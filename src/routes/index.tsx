@@ -8,9 +8,6 @@ import {
   Mail,
   Rocket,
   Users,
-  Zap,
-  Bot,
-  Sparkles,
   Link2,
 } from "lucide-react";
 import heroImg from "@/assets/vibe-hero.png";
@@ -125,17 +122,6 @@ const READINGS = [
   { title: "Large Language Models: Part 2", kind: "video", time: "7 min" },
   { title: "Welcome to Lovable", kind: "docs", time: "4 min" },
   { title: "Intro to LLMs (Karpathy)", kind: "video · optional", time: "60 min" },
-];
-
-const OUTCOMES = [
-  "Command of the latest AI-based tools for software development",
-  "Hands-on experience creating real applications with AI",
-  "Designing software with AI — specs, plans, and delegation",
-  "Judging whether an AI-produced program meets its objectives",
-  "A method for staying current in a rapidly changing field",
-  "Choosing the right AI dev tool for requirements and tradeoffs",
-  "A personal AI dev kit that compounds across projects",
-  "A portfolio of shipped builds, legible to any recruiter",
 ];
 
 const TAS = ["Vinamra Agarwal", "Ella Cao", "Prabhgun Basi", "Arian Shamaei", "Aditya Kumar"];
@@ -545,43 +531,6 @@ function SectionHeading({
       </p>
       <h2 className="mt-4 text-3xl font-bold uppercase tracking-tighter sm:text-4xl">{title}</h2>
       {lead && <p className="mt-3 leading-relaxed text-muted-foreground">{lead}</p>}
-    </div>
-  );
-}
-
-function AboutCard({
-  icon,
-  step,
-  title,
-  body,
-  highlight,
-}: {
-  icon: React.ReactNode;
-  step: string;
-  title: string;
-  body: string;
-  highlight?: boolean;
-}) {
-  return (
-    <div
-      className={`border-2 border-ink p-6 shadow-hard transition-transform hover:-translate-y-1 ${
-        highlight ? "bg-gold text-gold-foreground" : "bg-card"
-      }`}
-    >
-      <div className="flex items-center justify-between">
-        <span
-          className={`flex h-10 w-10 items-center justify-center border-2 border-ink ${
-            highlight ? "bg-card text-primary" : "bg-primary text-primary-foreground"
-          }`}
-        >
-          {icon}
-        </span>
-        <span className="font-mono text-3xl font-bold opacity-30">{step}</span>
-      </div>
-      <h3 className="mt-4 text-lg font-bold uppercase tracking-tight">{title}</h3>
-      <p className={`mt-2 text-sm leading-relaxed ${highlight ? "" : "text-muted-foreground"}`}>
-        {body}
-      </p>
     </div>
   );
 }
