@@ -255,40 +255,32 @@ function Index() {
       {/* About / format */}
       <section id="about" className="border-b-4 border-ink">
         <div className="mx-auto max-w-6xl px-6 py-20">
-          <SectionHeading kicker="about" title="Half lecture, half build — every week" />
-          <div className="mt-10 grid gap-6 md:grid-cols-3">
-            <AboutCard
-              icon={<Zap className="h-5 w-5" />}
-              step="01"
-              title="Builder attitude"
-              body="Each 80-minute session splits in two: a lecture and live demo of the week's core technique, then roughly 40 minutes of in-class building with the instructor and TAs answering questions one-on-one."
-            />
-            <AboutCard
-              icon={<Bot className="h-5 w-5" />}
-              step="02"
-              title="Current tools only"
-              body="The course spends its time on the state of the art — code generation, agentic frameworks, multi-agent orchestration, and apps that incorporate AI. Historical methods get no significant class time."
-              highlight
-            />
-            <AboutCard
-              icon={<Sparkles className="h-5 w-5" />}
-              step="03"
-              title="A course that builds itself"
-              body="AI is used in every aspect of the class: lecture plans and assignments are generated in collaboration with the instructors, projects are auto-graded, and weekly feedback surveys reshape the quarter as it runs."
-            />
-          </div>
-          <div className="mt-10 border-2 border-ink bg-card p-6 shadow-hard sm:p-8">
-            <h3 className="font-mono text-sm font-bold uppercase tracking-widest text-primary">
-              What you'll walk away with
-            </h3>
-            <ul className="mt-5 grid gap-x-10 gap-y-3.5 sm:grid-cols-2">
-              {OUTCOMES.map((item) => (
-                <li key={item} className="flex gap-2.5 font-medium">
-                  <ChevronRight className="mt-1 h-4 w-4 shrink-0 text-primary" strokeWidth={3} />
-                  <span>{item}</span>
-                </li>
-              ))}
-            </ul>
+          <SectionHeading kicker="about" title="The goal: build your own Claude Code" />
+          <div className="mt-10 border-4 border-ink bg-primary p-8 text-primary-foreground shadow-hard-lg sm:p-12">
+            <p className="max-w-3xl text-2xl font-bold leading-snug sm:text-3xl">
+              By the end of the quarter, you won't just use AI coding tools — you'll have built
+              one: your own coding agent, with a harness, tools, and guardrails you understand
+              line by line.
+            </p>
+            <p className="mt-6 max-w-3xl leading-relaxed opacity-90">
+              Each 80-minute session splits in two: a lecture and live demo of the week's core
+              technique, then roughly 40 minutes of in-class building with the instructor and TAs.
+              Week by week you assemble the pieces — the agentic loop, specification and steering,
+              MCP tools and governance, multi-agent orchestration, evals — until they compound into
+              an agent that's yours.
+            </p>
+            <div className="mt-8 flex flex-wrap gap-2.5 font-mono text-xs font-bold uppercase tracking-widest">
+              {["agentic loop", "steering", "mcp", "multi-agent", "evals", "deployment"].map(
+                (tag) => (
+                  <span
+                    key={tag}
+                    className="border-2 border-primary-foreground/50 px-2.5 py-1"
+                  >
+                    {tag}
+                  </span>
+                ),
+              )}
+            </div>
           </div>
         </div>
       </section>
