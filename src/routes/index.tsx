@@ -168,7 +168,7 @@ function Index() {
           height={1024}
           className="absolute right-6 top-6 hidden w-20 border-2 border-ink bg-card p-1 shadow-hard-sm md:block lg:w-24"
         />
-        <div className="mx-auto grid max-w-6xl gap-12 px-6 pb-16 pt-14 lg:grid-cols-[1.05fr_0.95fr] lg:items-center lg:pt-20">
+        <div className="mx-auto max-w-6xl px-6 pb-16 pt-14 lg:pt-20">
           <div>
             <span className="inline-block border-2 border-ink bg-gold px-3 py-1 font-mono text-xs font-bold uppercase tracking-widest text-gold-foreground shadow-hard-sm">
               Autumn 2026 · UW CSE 490 A2 · 2 credits
@@ -185,55 +185,6 @@ function Index() {
             <p className="mt-4 font-mono text-sm text-muted-foreground">
               Thursdays 10:00–11:20 · Savery Hall 220 · Steve Seitz
             </p>
-
-            {/* Quick links */}
-            <div className="mt-8">
-              <p className="flex items-center gap-2 font-mono text-xs font-bold uppercase tracking-widest text-muted-foreground">
-                <Link2 className="h-3.5 w-3.5" /> Quick links
-              </p>
-              <div className="mt-3 flex flex-wrap gap-2.5">
-                {QUICK_LINKS.map((link) => (
-                  <a
-                    key={link.label}
-                    href={link.href}
-                    {...(link.external ? { target: "_blank", rel: "noreferrer" } : {})}
-                    className="inline-flex items-center gap-1.5 border-2 border-ink bg-card px-3 py-1.5 font-mono text-xs font-semibold shadow-hard-sm transition-all hover:-translate-y-0.5 hover:bg-secondary"
-                  >
-                    {link.label}
-                    {link.external && <ArrowUpRight className="h-3 w-3" />}
-                  </a>
-                ))}
-              </div>
-            </div>
-          </div>
-
-          {/* Terminal */}
-          <div className="relative">
-            <div className="border-2 border-ink bg-code font-mono text-[13px] leading-relaxed text-on-dark shadow-hard-primary">
-              <div className="flex items-center gap-1.5 border-b-2 border-ink px-4 py-2.5">
-                <span className="h-2.5 w-2.5 rounded-full border border-ink bg-destructive" />
-                <span className="h-2.5 w-2.5 rounded-full border border-ink bg-gold" />
-                <span className="h-2.5 w-2.5 rounded-full border border-ink bg-chart-2" />
-                <span className="ml-3 text-[11px] text-on-dark/50">session-01 — prompt-to-app</span>
-              </div>
-              <div className="space-y-2.5 p-4">
-                <p>
-                  <span className="text-gold">❯ prompt</span> "a synth I can play on my phone"
-                </p>
-                <p className="text-on-dark/60">
-                  ▸ planning components… ▸ writing src/audio.ts… ▸ building ✓ 0 errors
-                </p>
-                <p>
-                  <span className="text-chart-2">✓ live</span>{" "}
-                  <span className="underline decoration-primary decoration-2 underline-offset-4">
-                    sensory-synth.lovable.app
-                  </span>
-                </p>
-                <p className="border-t border-on-dark/15 pt-2.5 text-on-dark/60">
-                  <span className="text-gold">❯</span> 40 minutes. English in, app out.
-                </p>
-              </div>
-            </div>
           </div>
         </div>
       </section>
