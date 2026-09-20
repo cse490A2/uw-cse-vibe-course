@@ -1,6 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
 import {
-  ArrowUpRight,
   BookOpen,
   ChevronRight,
   ListChecks,
@@ -9,6 +8,36 @@ import {
   Users,
 } from "lucide-react";
 import heroImg from "@/assets/vibe-hero.png";
+
+export const Route = createFileRoute("/")({
+  head: () => ({
+    meta: [
+      { title: "Vibe Coding — CSE 490 A2, University of Washington" },
+      {
+        name: "description",
+        content:
+          "CSE 490 A2 Vibe Coding at UW CSE: learn the latest AI-based tools for software development. Ten Thursdays, ten builds — prompt-to-app, agent harnesses, MCP, multi-agent orchestration, evals, and deployment.",
+      },
+      { property: "og:title", content: "Vibe Coding — CSE 490 A2, University of Washington" },
+      {
+        property: "og:description",
+        content:
+          "AI-assisted software development, taught by building. Ten Thursdays, ten builds — from your first prompt-to-app to deploying behind CI.",
+      },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary" },
+    ],
+  }),
+  component: Index,
+});
+
+const NAV = [
+  { href: "#about", label: "About" },
+  { href: "#schedule", label: "Schedule" },
+  { href: "#project-1", label: "Project 1" },
+  { href: "#grading", label: "Grading" },
+  { href: "#staff", label: "Staff" },
+];
 
 const WEEKS = [
   {
