@@ -77,14 +77,21 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Lovable App" },
-      { name: "description", content: "Lovable Generated Project" },
-      { name: "author", content: "Lovable" },
-      { property: "og:title", content: "Lovable App" },
-      { property: "og:description", content: "Lovable Generated Project" },
+      { title: "Vibe Coding — CSE 490 A2, University of Washington" },
+      {
+        name: "description",
+        content:
+          "CSE 490 A2 Vibe Coding at UW: AI-assisted software development — prompting, agent harnesses, MCP, evals, and shipping real apps. Thursdays 10:00–11:20, Savery 220.",
+      },
+      { name: "author", content: "UW Computer Science & Engineering" },
+      { property: "og:title", content: "Vibe Coding — CSE 490 A2, University of Washington" },
+      {
+        property: "og:description",
+        content:
+          "Learn the latest AI-based tools for software development. Ten Thursdays, ten builds — from prompt-to-app to deploying behind CI.",
+      },
       { property: "og:type", content: "website" },
-      { name: "twitter:card", content: "summary_large_image" },
-      { name: "twitter:site", content: "@Lovable" },
+      { name: "twitter:card", content: "summary" },
     ],
     links: [
       {
@@ -92,6 +99,12 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
         href: appCss,
       },
       { rel: "icon", href: "/favicon.ico", type: "image/x-icon" },
+      { rel: "preconnect", href: "https://fonts.googleapis.com" },
+      { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
+      {
+        rel: "stylesheet",
+        href: "https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:ital,wght@0,400;0,500;0,600;1,400&display=swap",
+      },
     ],
   }),
   shellComponent: RootShell,
