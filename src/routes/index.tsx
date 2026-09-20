@@ -174,7 +174,14 @@ function Index() {
       </header>
 
       {/* Hero */}
-      <section id="top" className="border-b-4 border-ink">
+      <section id="top" className="relative border-b-4 border-ink">
+        <img
+          src={heroImg}
+          alt="A relaxed student vibe coding while their laptop builds an app"
+          width={1024}
+          height={1024}
+          className="absolute right-6 top-6 hidden w-20 border-2 border-ink bg-card p-1 shadow-hard-sm md:block lg:w-24"
+        />
         <div className="mx-auto grid max-w-6xl gap-12 px-6 pb-16 pt-14 lg:grid-cols-[1.05fr_0.95fr] lg:items-center lg:pt-20">
           <div>
             <span className="inline-block border-2 border-ink bg-gold px-3 py-1 font-mono text-xs font-bold uppercase tracking-widest text-gold-foreground shadow-hard-sm">
@@ -214,18 +221,9 @@ function Index() {
             </div>
           </div>
 
-          {/* Hero art + terminal */}
+          {/* Terminal */}
           <div className="relative">
-            <div className="border-4 border-ink bg-card p-3 shadow-hard-primary">
-              <img
-                src={heroImg}
-                alt="A relaxed student vibe coding while their laptop builds an app"
-                width={1024}
-                height={1024}
-                className="w-full"
-              />
-            </div>
-            <div className="relative z-10 -mt-10 ml-auto w-[92%] border-2 border-ink bg-code font-mono text-[13px] leading-relaxed text-on-dark shadow-hard">
+            <div className="border-2 border-ink bg-code font-mono text-[13px] leading-relaxed text-on-dark shadow-hard-primary">
               <div className="flex items-center gap-1.5 border-b-2 border-ink px-4 py-2.5">
                 <span className="h-2.5 w-2.5 rounded-full border border-ink bg-destructive" />
                 <span className="h-2.5 w-2.5 rounded-full border border-ink bg-gold" />
