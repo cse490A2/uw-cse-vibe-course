@@ -8,9 +8,6 @@ import {
   Mail,
   Rocket,
   Users,
-  Zap,
-  Bot,
-  Sparkles,
   Link2,
 } from "lucide-react";
 import heroImg from "@/assets/vibe-hero.png";
@@ -127,17 +124,6 @@ const READINGS = [
   { title: "Intro to LLMs (Karpathy)", kind: "video · optional", time: "60 min" },
 ];
 
-const OUTCOMES = [
-  "Command of the latest AI-based tools for software development",
-  "Hands-on experience creating real applications with AI",
-  "Designing software with AI — specs, plans, and delegation",
-  "Judging whether an AI-produced program meets its objectives",
-  "A method for staying current in a rapidly changing field",
-  "Choosing the right AI dev tool for requirements and tradeoffs",
-  "A personal AI dev kit that compounds across projects",
-  "A portfolio of shipped builds, legible to any recruiter",
-];
-
 const TAS = ["Vinamra Agarwal", "Ella Cao", "Prabhgun Basi", "Arian Shamaei", "Aditya Kumar"];
 
 function Index() {
@@ -174,7 +160,14 @@ function Index() {
       </header>
 
       {/* Hero */}
-      <section id="top" className="border-b-4 border-ink">
+      <section id="top" className="relative border-b-4 border-ink">
+        <img
+          src={heroImg}
+          alt="A relaxed student vibe coding while their laptop builds an app"
+          width={1024}
+          height={1024}
+          className="absolute right-6 top-6 hidden w-20 border-2 border-ink bg-card p-1 shadow-hard-sm md:block lg:w-24"
+        />
         <div className="mx-auto grid max-w-6xl gap-12 px-6 pb-16 pt-14 lg:grid-cols-[1.05fr_0.95fr] lg:items-center lg:pt-20">
           <div>
             <span className="inline-block border-2 border-ink bg-gold px-3 py-1 font-mono text-xs font-bold uppercase tracking-widest text-gold-foreground shadow-hard-sm">
@@ -214,18 +207,9 @@ function Index() {
             </div>
           </div>
 
-          {/* Hero art + terminal */}
+          {/* Terminal */}
           <div className="relative">
-            <div className="border-4 border-ink bg-card p-3 shadow-hard-primary">
-              <img
-                src={heroImg}
-                alt="A relaxed student vibe coding while their laptop builds an app"
-                width={1024}
-                height={1024}
-                className="w-full"
-              />
-            </div>
-            <div className="relative z-10 -mt-10 ml-auto w-[92%] border-2 border-ink bg-code font-mono text-[13px] leading-relaxed text-on-dark shadow-hard">
+            <div className="border-2 border-ink bg-code font-mono text-[13px] leading-relaxed text-on-dark shadow-hard-primary">
               <div className="flex items-center gap-1.5 border-b-2 border-ink px-4 py-2.5">
                 <span className="h-2.5 w-2.5 rounded-full border border-ink bg-destructive" />
                 <span className="h-2.5 w-2.5 rounded-full border border-ink bg-gold" />
@@ -257,40 +241,32 @@ function Index() {
       {/* About / format */}
       <section id="about" className="border-b-4 border-ink">
         <div className="mx-auto max-w-6xl px-6 py-20">
-          <SectionHeading kicker="about" title="Half lecture, half build — every week" />
-          <div className="mt-10 grid gap-6 md:grid-cols-3">
-            <AboutCard
-              icon={<Zap className="h-5 w-5" />}
-              step="01"
-              title="Builder attitude"
-              body="Each 80-minute session splits in two: a lecture and live demo of the week's core technique, then roughly 40 minutes of in-class building with the instructor and TAs answering questions one-on-one."
-            />
-            <AboutCard
-              icon={<Bot className="h-5 w-5" />}
-              step="02"
-              title="Current tools only"
-              body="The course spends its time on the state of the art — code generation, agentic frameworks, multi-agent orchestration, and apps that incorporate AI. Historical methods get no significant class time."
-              highlight
-            />
-            <AboutCard
-              icon={<Sparkles className="h-5 w-5" />}
-              step="03"
-              title="A course that builds itself"
-              body="AI is used in every aspect of the class: lecture plans and assignments are generated in collaboration with the instructors, projects are auto-graded, and weekly feedback surveys reshape the quarter as it runs."
-            />
-          </div>
-          <div className="mt-10 border-2 border-ink bg-card p-6 shadow-hard sm:p-8">
-            <h3 className="font-mono text-sm font-bold uppercase tracking-widest text-primary">
-              What you'll walk away with
-            </h3>
-            <ul className="mt-5 grid gap-x-10 gap-y-3.5 sm:grid-cols-2">
-              {OUTCOMES.map((item) => (
-                <li key={item} className="flex gap-2.5 font-medium">
-                  <ChevronRight className="mt-1 h-4 w-4 shrink-0 text-primary" strokeWidth={3} />
-                  <span>{item}</span>
-                </li>
-              ))}
-            </ul>
+          <SectionHeading kicker="about" title="The goal: build your own Claude Code" />
+          <div className="mt-10 border-4 border-ink bg-primary p-8 text-primary-foreground shadow-hard-lg sm:p-12">
+            <p className="max-w-3xl text-2xl font-bold leading-snug sm:text-3xl">
+              By the end of the quarter, you won't just use AI coding tools — you'll have built
+              one: your own coding agent, with a harness, tools, and guardrails you understand
+              line by line.
+            </p>
+            <p className="mt-6 max-w-3xl leading-relaxed opacity-90">
+              Each 80-minute session splits in two: a lecture and live demo of the week's core
+              technique, then roughly 40 minutes of in-class building with the instructor and TAs.
+              Week by week you assemble the pieces — the agentic loop, specification and steering,
+              MCP tools and governance, multi-agent orchestration, evals — until they compound into
+              an agent that's yours.
+            </p>
+            <div className="mt-8 flex flex-wrap gap-2.5 font-mono text-xs font-bold uppercase tracking-widest">
+              {["agentic loop", "steering", "mcp", "multi-agent", "evals", "deployment"].map(
+                (tag) => (
+                  <span
+                    key={tag}
+                    className="border-2 border-primary-foreground/50 px-2.5 py-1"
+                  >
+                    {tag}
+                  </span>
+                ),
+              )}
+            </div>
           </div>
         </div>
       </section>
@@ -555,43 +531,6 @@ function SectionHeading({
       </p>
       <h2 className="mt-4 text-3xl font-bold uppercase tracking-tighter sm:text-4xl">{title}</h2>
       {lead && <p className="mt-3 leading-relaxed text-muted-foreground">{lead}</p>}
-    </div>
-  );
-}
-
-function AboutCard({
-  icon,
-  step,
-  title,
-  body,
-  highlight,
-}: {
-  icon: React.ReactNode;
-  step: string;
-  title: string;
-  body: string;
-  highlight?: boolean;
-}) {
-  return (
-    <div
-      className={`border-2 border-ink p-6 shadow-hard transition-transform hover:-translate-y-1 ${
-        highlight ? "bg-gold text-gold-foreground" : "bg-card"
-      }`}
-    >
-      <div className="flex items-center justify-between">
-        <span
-          className={`flex h-10 w-10 items-center justify-center border-2 border-ink ${
-            highlight ? "bg-card text-primary" : "bg-primary text-primary-foreground"
-          }`}
-        >
-          {icon}
-        </span>
-        <span className="font-mono text-3xl font-bold opacity-30">{step}</span>
-      </div>
-      <h3 className="mt-4 text-lg font-bold uppercase tracking-tight">{title}</h3>
-      <p className={`mt-2 text-sm leading-relaxed ${highlight ? "" : "text-muted-foreground"}`}>
-        {body}
-      </p>
     </div>
   );
 }
