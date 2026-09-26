@@ -34,15 +34,32 @@ jobs:
           BASE_PATH: /${{ github.event.repository.name || github.repository }}/
         run: bun run build
 
-      - name: Prevent Jekyll processing
-        run: touch dist/client/.nojekyll
+      - name: Locate static output
+        id: out
+        run: |
+          if [ -d .output/public ]; then
+            DIR=.output/public
+          elif [ -d dist/client ]; then
+            DIR=dist/client
+          else
+            echo "No static output directory found. Contents:"
+            ls -la
+            exit 1
+          fi
+          echo "dir=$DIR" >> "$GITHUB_OUTPUT"
+          echo "Using $DIR"
+          ls -la "$DIR"
 
-      - name: Add SPA fallback
-        run: cp dist/client/index.html dist/client/404.html
+      - name: Prepare for GitHub Pages
+        run: |
+          DIR="${{ steps.out.outputs.dir }}"
+          touch "$DIR/.nojekyll"
+          cp "$DIR/index.html" "$DIR/404.html"
 
       - uses: actions/upload-pages-artifact@v3
         with:
-          path: dist/client
+          path: ${{ steps.out.outputs.dir }}
+
 
   deploy:
     needs: build
