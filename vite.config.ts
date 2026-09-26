@@ -6,9 +6,19 @@
 // You can pass additional config via defineConfig({ vite: { ... }, etc... }) if needed.
 import { defineConfig } from "@lovable.dev/vite-tanstack-config";
 
+// Normalize BASE_PATH so it is always "/<repo>/" (or "/" for root hosting),
+// even if it arrives empty, as "//", or containing an "org/repo" prefix.
+function normalizeBasePath(raw: string | undefined): string {
+  if (!raw) return "/";
+  const cleaned = raw.replace(/^\/+|\/+$/g, ""); // trim slashes
+  if (!cleaned) return "/";
+  const repo = cleaned.split("/").pop() ?? cleaned; // drop any "org/" prefix
+  return `/${repo}/`;
+}
+
 export default defineConfig({
   // Serve from a sub-path when deploying to https://<user>.github.io/<repo>/
-  vite: { base: process.env["BASE_PATH"] || "/" },
+  vite: { base: normalizeBasePath(process.env["BASE_PATH"]) },
   tanstackStart: {
     // Redirect TanStack Start's bundled server entry to src/server.ts (our SSR error wrapper).
     // nitro/vite builds from this
