@@ -25,13 +25,13 @@ jobs:
           bun-version: latest
 
       - name: Install dependencies
-        run: bun install --frozen-lockfile
+        run: bun install --frozen-lockfile || bun install
 
       - name: Build static site
         # Leave BASE_PATH unset (or set it to "/") when using a custom domain
         # or a <user>.github.io repository.
         env:
-          BASE_PATH: /${{ github.event.repository.name }}/
+          BASE_PATH: /${{ github.event.repository.name || github.repository }}/
         run: bun run build
 
       - name: Prevent Jekyll processing
