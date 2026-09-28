@@ -24,7 +24,17 @@ export default defineConfig({
     // nitro/vite builds from this
     server: { entry: "server" },
     // Render every page to plain HTML at build time so it can be served as a static site.
-    pages: [{ path: "/" }],
+    // Project pages prerender as their shell; the text is fetched from the published
+    // repository when a student opens the page, so an edit there never needs a site build.
+    pages: [
+      { path: "/" },
+      { path: "/projects" },
+      ...Array.from({ length: 10 }, (_, i) => `P${String(i + 1).padStart(2, "0")}`).flatMap((id) => [
+        { path: `/projects/${id}` },
+        { path: `/projects/${id}/setup` },
+        { path: `/projects/${id}/submission` },
+      ]),
+    ],
     prerender: { enabled: true, autoStaticPathsDiscovery: false },
   },
 });

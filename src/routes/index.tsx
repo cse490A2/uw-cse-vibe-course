@@ -1,12 +1,5 @@
-import { createFileRoute } from "@tanstack/react-router";
-import {
-  BookOpen,
-  ChevronRight,
-  ListChecks,
-  Mail,
-  Rocket,
-  Users,
-} from "lucide-react";
+import { Link, createFileRoute } from "@tanstack/react-router";
+import { BookOpen, ChevronRight, ListChecks, Mail, Rocket, Users } from "lucide-react";
 import heroImg from "@/assets/vibe-hero.png";
 
 export const Route = createFileRoute("/")({
@@ -134,6 +127,9 @@ function Index() {
                 {item.label}
               </a>
             ))}
+            <Link to="/projects" className="transition-colors hover:text-primary">
+              Projects
+            </Link>
           </nav>
           <a
             href="#project-1"
@@ -164,8 +160,8 @@ function Index() {
               <span className="text-primary">Coding</span>
             </h1>
             <p className="mt-6 max-w-xl text-lg font-medium leading-relaxed">
-              Learn the latest AI-based tools for software development — by building. Ten
-              Thursdays, ten builds: from a single prompt to a shipped app.
+              Learn the latest AI-based tools for software development — by building. Ten Thursdays,
+              ten builds: from a single prompt to a shipped app.
             </p>
             <p className="mt-4 font-mono text-sm text-muted-foreground">
               Thursdays 10:00–11:20 · Savery Hall 220 · Steve Seitz
@@ -180,9 +176,9 @@ function Index() {
           <SectionHeading kicker="about" title="The goal: build your own Claude Code" />
           <div className="mt-10 border-4 border-ink bg-primary p-8 text-primary-foreground shadow-hard-lg sm:p-12">
             <p className="max-w-3xl text-2xl font-bold leading-snug sm:text-3xl">
-              By the end of the quarter, you won't just use AI coding tools — you'll have built
-              one: your own coding agent, with a harness, tools, and guardrails you understand
-              line by line.
+              By the end of the quarter, you won't just use AI coding tools — you'll have built one:
+              your own coding agent, with a harness, tools, and guardrails you understand line by
+              line.
             </p>
             <p className="mt-6 max-w-3xl leading-relaxed opacity-90">
               Each 80-minute session splits in two: a lecture and live demo of the week's core
@@ -194,10 +190,7 @@ function Index() {
             <div className="mt-8 flex flex-wrap gap-2.5 font-mono text-xs font-bold uppercase tracking-widest">
               {["agentic loop", "steering", "mcp", "multi-agent", "evals", "deployment"].map(
                 (tag) => (
-                  <span
-                    key={tag}
-                    className="border-2 border-primary-foreground/50 px-2.5 py-1"
-                  >
+                  <span key={tag} className="border-2 border-primary-foreground/50 px-2.5 py-1">
                     {tag}
                   </span>
                 ),
@@ -250,6 +243,13 @@ function Index() {
       <section id="project-1" className="border-b-4 border-ink">
         <div className="mx-auto max-w-6xl px-6 py-20">
           <SectionHeading kicker="current assignment" title="Project 01 — Prompt to Web App" />
+          <Link
+            to="/projects/$"
+            params={{ _splat: "P01" }}
+            className="mt-4 inline-flex items-center gap-1.5 border-2 border-ink bg-card px-3 py-1.5 font-mono text-xs font-bold uppercase tracking-widest shadow-hard-sm transition-transform hover:-translate-y-0.5"
+          >
+            Read the full handout <ChevronRight className="h-3.5 w-3.5" />
+          </Link>
           <div className="mt-10 grid border-4 border-ink shadow-hard-lg lg:grid-cols-2">
             <div className="bg-primary p-8 text-primary-foreground sm:p-10">
               <div className="flex items-center gap-3">
@@ -257,8 +257,8 @@ function Index() {
                 <h3 className="text-2xl font-bold uppercase tracking-tight">The task</h3>
               </div>
               <p className="mt-4 text-lg font-medium leading-relaxed opacity-90">
-                You have 40 minutes. Come up with a cool mobile phone web app, iterate until it
-                does what you want, and ship it.
+                You have 40 minutes. Come up with a cool mobile phone web app, iterate until it does
+                what you want, and ship it.
               </p>
               <ul className="mt-8 space-y-4 font-medium">
                 <li className="flex gap-3 border-2 border-primary-foreground/40 p-4">
@@ -302,7 +302,7 @@ function Index() {
                     </p>
                     <ul className="mt-2.5 space-y-1.5 text-sm font-medium">
                       <li>· Published app link</li>
-                      <li>· Shared project link (so we can read your prompts)</li>
+                      <li>· Your prompts, pasted in order after the link</li>
                       <li>· Screenshot of you using the annotation tool</li>
                       <li>· Submit as Text: links + image</li>
                     </ul>
@@ -399,8 +399,8 @@ function Index() {
               </div>
               <p className="mt-5 font-medium leading-relaxed text-gold-foreground">
                 Professor in UW CSE working on computer vision, graphics, and generative AI — and a
-                VP Fellow at Google, where he has led teams building products like Beam and Flow.
-                He normally teaches the computer graphics course.
+                VP Fellow at Google, where he has led teams building products like Beam and Flow. He
+                normally teaches the computer graphics course.
               </p>
               <a
                 href="mailto:seitz@cs.washington.edu"
@@ -421,7 +421,10 @@ function Index() {
                     className="flex items-center gap-3 border-2 border-ink bg-secondary px-4 py-2.5"
                   >
                     <span className="flex h-8 w-8 items-center justify-center border-2 border-ink bg-primary font-mono text-xs font-bold text-primary-foreground">
-                      {ta.split(" ").map((w) => w[0]).join("")}
+                      {ta
+                        .split(" ")
+                        .map((w) => w[0])
+                        .join("")}
                     </span>
                     <span className="text-sm font-semibold">{ta}</span>
                   </li>
@@ -451,15 +454,7 @@ function Index() {
   );
 }
 
-function SectionHeading({
-  kicker,
-  title,
-  lead,
-}: {
-  kicker: string;
-  title: string;
-  lead?: string;
-}) {
+function SectionHeading({ kicker, title, lead }: { kicker: string; title: string; lead?: string }) {
   return (
     <div className="max-w-2xl">
       <p className="inline-block border-2 border-ink bg-card px-2.5 py-1 font-mono text-xs font-bold uppercase tracking-widest shadow-hard-sm">
