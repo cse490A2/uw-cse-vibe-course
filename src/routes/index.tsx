@@ -1,5 +1,9 @@
 import { Link, createFileRoute } from "@tanstack/react-router";
-import { BookOpen, ChevronRight, ListChecks, Mail, Rocket, Users } from "lucide-react";
+import { useQuery } from "@tanstack/react-query";
+import { ChevronRight, Mail, Users } from "lucide-react";
+
+import { ProjectMarkdown } from "@/components/ProjectMarkdown";
+import { fetchText, projectTitle, stripFrontMatter } from "@/lib/published";
 import heroImg from "@/assets/vibe-hero.png";
 
 export const Route = createFileRoute("/")({
@@ -239,112 +243,8 @@ function Index() {
         </div>
       </section>
 
-      {/* Project 1 */}
-      <section id="project-1" className="border-b-4 border-ink">
-        <div className="mx-auto max-w-6xl px-6 py-20">
-          <SectionHeading kicker="current assignment" title="Project 01 — Prompt to Web App" />
-          <Link
-            to="/projects/$"
-            params={{ _splat: "P01" }}
-            className="mt-4 inline-flex items-center gap-1.5 border-2 border-ink bg-card px-3 py-1.5 font-mono text-xs font-bold uppercase tracking-widest shadow-hard-sm transition-transform hover:-translate-y-0.5"
-          >
-            Read the full handout <ChevronRight className="h-3.5 w-3.5" />
-          </Link>
-          <div className="mt-10 grid border-4 border-ink shadow-hard-lg lg:grid-cols-2">
-            <div className="bg-primary p-8 text-primary-foreground sm:p-10">
-              <div className="flex items-center gap-3">
-                <Rocket className="h-6 w-6" />
-                <h3 className="text-2xl font-bold uppercase tracking-tight">The task</h3>
-              </div>
-              <p className="mt-4 text-lg font-medium leading-relaxed opacity-90">
-                You have 40 minutes. Come up with a cool mobile phone web app, iterate until it does
-                what you want, and ship it.
-              </p>
-              <ul className="mt-8 space-y-4 font-medium">
-                <li className="flex gap-3 border-2 border-primary-foreground/40 p-4">
-                  <ChevronRight className="mt-0.5 h-4 w-4 shrink-0" strokeWidth={3} />
-                  <span>
-                    <strong>Pick your tool:</strong> Lovable (publishes for you) or UW Purple (runs
-                    inside UW, fully private). Use the course code to upgrade Lovable to Pro first.
-                  </span>
-                </li>
-                <li className="flex gap-3 border-2 border-primary-foreground/40 p-4">
-                  <ChevronRight className="mt-0.5 h-4 w-4 shrink-0" strokeWidth={3} />
-                  <span>
-                    <strong>Build:</strong> ask the tool for ideas if you need them, then iterate
-                    until it does what you want.
-                  </span>
-                </li>
-                <li className="flex gap-3 border-2 border-primary-foreground/40 p-4">
-                  <ChevronRight className="mt-0.5 h-4 w-4 shrink-0" strokeWidth={3} />
-                  <span>
-                    <strong>Annotate at least once:</strong> in Lovable, select a part of the
-                    preview or draw on it and describe the change; in Purple, screenshot the region
-                    and send it with your change.
-                  </span>
-                </li>
-              </ul>
-              <p className="mt-8 inline-block border-2 border-ink bg-gold px-4 py-2 font-mono text-sm font-bold text-gold-foreground shadow-hard-sm">
-                Due Tuesday 11:59 pm · Canvas
-              </p>
-            </div>
-
-            <div className="border-t-4 border-ink bg-card lg:border-l-4 lg:border-t-0">
-              <div className="border-b-2 border-ink p-8 sm:p-10">
-                <div className="flex items-center gap-3">
-                  <ListChecks className="h-5 w-5 text-primary" />
-                  <h3 className="text-lg font-bold uppercase tracking-tight">What to turn in</h3>
-                </div>
-                <div className="mt-5 grid gap-4 sm:grid-cols-2">
-                  <div className="border-2 border-ink bg-secondary p-4 shadow-hard-sm">
-                    <p className="font-mono text-xs font-bold uppercase tracking-widest text-primary">
-                      Lovable track
-                    </p>
-                    <ul className="mt-2.5 space-y-1.5 text-sm font-medium">
-                      <li>· Published app link</li>
-                      <li>· Your prompts, pasted in order after the link</li>
-                      <li>· Screenshot of you using the annotation tool</li>
-                      <li>· Submit as Text: links + image</li>
-                    </ul>
-                  </div>
-                  <div className="border-2 border-ink bg-secondary p-4 shadow-hard-sm">
-                    <p className="font-mono text-xs font-bold uppercase tracking-widest text-primary">
-                      Purple track
-                    </p>
-                    <ul className="mt-2.5 space-y-1.5 text-sm font-medium">
-                      <li>· The html file Purple wrote</li>
-                      <li>· A text file with your prompts, in order</li>
-                      <li>· The screenshots you sent Purple</li>
-                      <li>· Submit as Upload: all together</li>
-                    </ul>
-                  </div>
-                </div>
-              </div>
-              <div className="p-8 sm:p-10">
-                <div className="flex items-center gap-3">
-                  <BookOpen className="h-5 w-5 text-primary" />
-                  <h3 className="text-lg font-bold uppercase tracking-tight">
-                    This week's readings
-                  </h3>
-                </div>
-                <ul className="mt-5 space-y-2.5">
-                  {READINGS.map((r) => (
-                    <li
-                      key={r.title}
-                      className="flex items-center justify-between gap-4 border-2 border-ink bg-secondary px-4 py-2.5 text-sm font-medium"
-                    >
-                      <span>{r.title}</span>
-                      <span className="shrink-0 font-mono text-xs text-muted-foreground">
-                        {r.kind} · {r.time}
-                      </span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
+      {/* Project 1: the published handout itself, fetched at view time (pointer, never a copy) */}
+      <CurrentProject id="P01" />
 
       {/* Grading */}
       <section id="grading" className="border-b-4 border-ink bg-secondary">
@@ -451,6 +351,47 @@ function Index() {
         </div>
       </footer>
     </div>
+  );
+}
+
+function CurrentProject({ id }: { id: string }) {
+  const q = useQuery({
+    queryKey: ["published", id, "handout"],
+    queryFn: () => fetchText(`projects/${id}/README.md`),
+    enabled: typeof window !== "undefined",
+    staleTime: 60_000,
+  });
+  const title = q.data ? projectTitle(q.data, id) : `Project ${Number(id.slice(1))}`;
+  return (
+    <section id="project-1" className="border-b-4 border-ink">
+      <div className="mx-auto max-w-6xl px-6 py-20">
+        <SectionHeading kicker="current assignment" title={title} />
+        <Link
+          to="/projects/$"
+          params={{ _splat: id }}
+          className="mt-4 inline-flex items-center gap-1.5 border-2 border-ink bg-card px-3 py-1.5 font-mono text-xs font-bold uppercase tracking-widest shadow-hard-sm transition-transform hover:-translate-y-0.5"
+        >
+          Setup, submission and starter files <ChevronRight className="h-3.5 w-3.5" />
+        </Link>
+        <div className="mt-10 border-4 border-ink bg-card p-8 shadow-hard-lg sm:p-10">
+          {q.isPending && (
+            <p className="font-mono text-sm text-muted-foreground">Loading the handout…</p>
+          )}
+          {q.isError && (
+            <div>
+              <p className="font-medium">The handout did not load from the course repository.</p>
+              <button
+                onClick={() => q.refetch()}
+                className="mt-3 inline-flex items-center border-2 border-ink bg-primary px-3 py-1.5 font-mono text-xs font-bold uppercase tracking-widest text-primary-foreground shadow-hard-sm"
+              >
+                Try again
+              </button>
+            </div>
+          )}
+          {q.data && <ProjectMarkdown id={id} markdown={stripFrontMatter(q.data)} />}
+        </div>
+      </div>
+    </section>
   );
 }
 
